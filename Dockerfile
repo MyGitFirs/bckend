@@ -17,7 +17,7 @@ COPY . .
 
 # Build client app
 WORKDIR /src/src/WebUI/ClientApp
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN NODE_OPTIONS=--openssl-legacy-provider npm run build -- --prod
 
 # Publish .NET backend
