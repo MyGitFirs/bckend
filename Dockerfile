@@ -16,13 +16,16 @@ RUN apt-get update && \
 # Copy all files into the container
 COPY . .  # This copies everything from your repo into /src
 
-# Navigate to the ClientApp directory (make sure this is correct)
+# List files to check if they are copied correctly
+RUN ls -R /src
+
+# Navigate to the ClientApp directory
 WORKDIR /src/src/WebUI/ClientApp
 
 # Run npm install
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps --force
 
-# Build the frontend (ensure this path is correct)
+# Build the frontend
 RUN npm run build -- --prod
 
 # Return to src and publish the .NET app
