@@ -13,18 +13,21 @@ RUN apt-get update && \
     curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
 
-COPY . .
+# Copy all files into the container
+COPY . .  # This copies everything from your repo into /src
 
-# Run npm install with legacy-peer-deps
+# Navigate to the ClientApp directory (make sure this is correct)
 WORKDIR /src/src/WebUI/ClientApp
-RUN npm cache clean --force
-RUN rm -rf node_modules package-lock.json
+
+# Run npm install
 RUN npm install --legacy-peer-deps
 
-# Return to src and publish
+# Build the frontend (ensure this path is correct)
+RUN npm run build -- --prod
+
+# Return to src and publish the .NET app
 WORKDIR /src
 ENV NODE_OPTIONS=--openssl-legacy-provider
-RUN npm run build -- --prod
 RUN dotnet publish src/WebUI/WebUI.csproj -c Release -o /app/publish
 
 # Final image using previously defined "base"
