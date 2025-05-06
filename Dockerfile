@@ -21,6 +21,7 @@ RUN npm install --legacy-peer-deps
 
 # Return to src and publish
 WORKDIR /src
+ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN dotnet publish src/WebUI/WebUI.csproj -c Release -o /app/publish
 
 # Final image using previously defined "base"
