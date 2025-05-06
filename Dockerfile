@@ -7,25 +7,28 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Install Node.js 16 (safe for Webpack/OpenSSL)
+# Install Node.js (for npm commands)
 RUN apt-get update && \
     apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
 
 COPY . .
 
-# Build client app
+# Run npm install with legacy-peer-deps
 WORKDIR /src/src/WebUI/ClientApp
+RUN npm cache clean --force
+RUN rm -rf node_modules package-lock.json
 RUN npm install --legacy-peer-deps
-RUN NODE_OPTIONS=--openssl-legacy-provider npm run build -- --prod
 
-# Publish .NET backend
+# Return to src and publish
 WORKDIR /src
+ENV NODE_OPTIONS=--openssl-legacy-provider
+RUN npm run build -- --prod
 RUN dotnet publish src/WebUI/WebUI.csproj -c Release -o /app/publish
 
-# Final image
+# Final image using previously defined "base"
 FROM base AS final
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=build /app/publish . 
 ENTRYPOINT ["dotnet", "CleanArchitecture.WebUI.dll"]
