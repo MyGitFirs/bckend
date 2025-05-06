@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "q+G8aaL6tIc=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\suare\\Downloads\\CleanArchitecture-1\\tests\\Application.FunctionalTests\\Application.FunctionalTests.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to read project information for 'Application.FunctionalTests': Invalid framework identifier ''."
+    }
+  ]
+}

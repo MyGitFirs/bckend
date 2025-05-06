@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "iKCNlFDz4qE=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\suare\\Downloads\\CleanArchitecture-1\\src\\Web\\Web.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to read project information for 'Web': Invalid framework identifier ''."
+    }
+  ]
+}

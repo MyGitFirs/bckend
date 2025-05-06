@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "gVwr7bfGV8M=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\suare\\Downloads\\CleanArchitecture-1\\tests\\Infrastructure.IntegrationTests\\Infrastructure.IntegrationTests.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to read project information for 'Infrastructure.IntegrationTests': Invalid framework identifier ''."
+    }
+  ]
+}

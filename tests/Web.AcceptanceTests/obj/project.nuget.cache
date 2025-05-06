@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "0XywhYKeCG0=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\suare\\Downloads\\CleanArchitecture-1\\tests\\Web.AcceptanceTests\\Web.AcceptanceTests.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to read project information for 'Web.AcceptanceTests': Invalid framework identifier ''."
+    }
+  ]
+}
