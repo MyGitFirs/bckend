@@ -15,15 +15,16 @@ RUN apt-get update && \
 
 COPY . .
 
-# Run npm install with legacy-peer-deps (to resolve Angular issue)
+# Run npm install with legacy-peer-deps (Angular fix)
 WORKDIR /src/src/WebUI/ClientApp
 RUN npm install --legacy-peer-deps
 
+# Return to src and publish
 WORKDIR /src
 RUN dotnet publish src/WebUI/WebUI.csproj -c Release -o /app/publish
 
 # Final image using previously defined "base"
 FROM base AS final
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=build /app/publish .  # This line is correct
 ENTRYPOINT ["dotnet", "CleanArchitecture.WebUI.dll"]
