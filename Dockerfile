@@ -15,13 +15,10 @@ RUN apt-get update && \
 
 COPY . .
 
-# Set OpenSSL legacy provider for compatibility
-ENV NODE_OPTIONS=--openssl-legacy-provider
-
 # Build client app
 WORKDIR /src/src/WebUI/ClientApp
 RUN npm install
-RUN npm run build -- --prod
+RUN NODE_OPTIONS=--openssl-legacy-provider npm run build -- --prod
 
 # Publish .NET backend
 WORKDIR /src
