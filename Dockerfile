@@ -11,7 +11,7 @@ WORKDIR /src
 COPY . .
 
 # Build and publish the WebUI project
-RUN dotnet publish src/CleanArchitecture.WebUI/CleanArchitecture.WebUI.csproj -c Release -o /app/publish
+RUN dotnet publish src/WebUI/WebUI.csproj -c Release -o /app/publish
 
 # Final image
 FROM base AS final
